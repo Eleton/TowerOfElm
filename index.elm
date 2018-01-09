@@ -1,54 +1,50 @@
--- Read more about this program in the official Elm guide:
--- https://guide.elm-lang.org/architecture/user_input/buttons.html
-
-
---module Main exposing (..)
-
-import Html exposing (Html, div, span, text, program)
+import Html exposing (Html, div, span, text, program, select, option, button)
 import Html.Events exposing (onClick)
-import Mouse
-import Keyboard
 import Html.Attributes exposing (..)
-
+import Array
 
 -- MODEL
 
-
 type alias Model =
-    { first : Pile, second : Pile, third : Pile, brick : Int }
+    { piles : Array.Array Pile
+    , brick : Int
+    , count : Int
+    , numberOfBricks : Int
+    }
 
 type alias Pile =
     List Int
 
+initialModel = Model (Array.fromList [[1,2,3],[],[]]) 0 0 3
 
 init : ( Model, Cmd Msg )
 init =
-    ( (Model [1,2,3,4] [] [] 0), Cmd.none )
+    ( initialModel, Cmd.none )
 
 
 
 -- MESSAGES
 
-
 type Msg
     = Click Int
-
+    | Difficulty Int
 
 
 -- VIEW
 
-
 view : Model -> Html Msg
 view model =
     div [] [
-        div [ style [("width", "300px"), ("display", "flex"), ("justify-content", "center")]] [ div [ brickStyle model.brick ] [] ]
+        div []
+            (List.map (\n -> button [ onClick (Difficulty n) ] [ text (toString n) ]) [3,4,5] )
+        , div [ style [("width", "300px"), ("display", "flex"), ("justify-content", "center")]] [ div [ brickStyle model.brick ] [] ]
         , div [ pilesStyle ]
-        [ span [ onClick (Click 1) ] [ pilefy model.first ]
-        , span [ onClick (Click 2) ] [ pilefy model.second ]
-        , span [ onClick (Click 3) ] [ pilefy model.third ]
+        [ span [ onClick (Click 0) ] [ pilefy (Maybe.withDefault [] (Array.get 0 model.piles)) ]
+        , span [ onClick (Click 1) ] [ pilefy (Maybe.withDefault [] (Array.get 1 model.piles)) ]
+        , span [ onClick (Click 2) ] [ pilefy (Maybe.withDefault [] (Array.get 2 model.piles)) ]
         ]
+        , div [] [ text ((toString model.count) ++ "/" ++ (toString (2^model.numberOfBricks - 1)))]
     ]
-
 
 pilefy : Pile -> Html Msg
 pilefy pile =
@@ -78,77 +74,46 @@ brickStyle w =
     , ("margin-bottom", "1px")
     , ("background-color", "brown")
     , ("width", (toString (w * 20)) ++ "px")
+    , ("border-radius", "4px")
     ]
 
--- UPDATE
 
+-- UPDATE
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Click pile ->
+        Click pileIndex ->
             case model.brick of
                 0 ->
-                    case pile of
-                        1 ->
-                            case model.first of
-                                h::t -> 
-                                    ( { model | first = t, brick = h }, Cmd.none )
-                                [] ->
-                                    ( model, Cmd.none )
-                        2 ->
-                            case model.second of
-                                h::t -> 
-                                    ( { model | second = t, brick = h }, Cmd.none )
-                                [] ->
-                                    ( model, Cmd.none )
-                        3 ->
-                            case model.third of
-                                h::t -> 
-                                    ( { model | third = t, brick = h }, Cmd.none )
+                    case Array.get pileIndex model.piles of
+                        Just pile ->
+                            case pile of
+                                h::t ->
+                                    ( { model | piles = Array.set pileIndex t model.piles, brick = h, count = model.count + 1 }, Cmd.none )
                                 [] ->
                                     ( model, Cmd.none )
                         _ ->
                             (model, Cmd.none)
-                x ->
-                    case pile of
-                        1 ->
-                            case model.first of
+                value ->
+                    case Array.get pileIndex model.piles of
+                        Just pile ->
+                            case pile of
                                 h::t ->
-                                    case x < h of
+                                    case value < h of
                                         True ->
-                                            ( { model | first = x::model.first, brick = 0}, Cmd.none)
+                                            ( { model | piles = Array.set pileIndex (value::h::t) model.piles, brick = 0 }, Cmd.none)
                                         False ->
                                             ( model, Cmd.none )
                                 [] ->
-                                    ( { model | first = [x], brick = 0 }, Cmd.none )
-                        2 ->
-                            case model.second of
-                                h::t ->
-                                    case x < h of
-                                        True ->
-                                            ( { model | second = x::model.second, brick = 0}, Cmd.none)
-                                        False ->
-                                            ( model, Cmd.none )
-                                [] ->
-                                    ( { model | second = [x], brick = 0 }, Cmd.none )
-                        3 ->
-                            case model.third of
-                                h::t ->
-                                    case x < h of
-                                        True ->
-                                            ( { model | third = x::model.third, brick = 0}, Cmd.none)
-                                        False ->
-                                            ( model, Cmd.none )
-                                [] ->
-                                    ( { model | third = [x], brick = 0 }, Cmd.none )
+                                    ( { model | piles = Array.set pileIndex [value] model.piles, brick = 0 }, Cmd.none )
                         _ ->
-                            ( model, Cmd.none)
-
+                            (model, Cmd.none)
+        Difficulty amount ->
+            (  Model (Array.fromList [(List.indexedMap (\i _ -> i+1) (List.repeat amount 0)),[],[]]) 0 0 amount, Cmd.none )
 
 
 -- SUBSCRIPTIONS
-
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -157,7 +122,6 @@ subscriptions model =
 
 
 -- MAIN
-
 
 main : Program Never Model Msg
 main =

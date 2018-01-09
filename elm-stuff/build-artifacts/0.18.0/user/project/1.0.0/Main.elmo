@@ -1,167 +1,6 @@
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		var _p14 = _p0._0;
-		var _p1 = model.brick;
-		if (_p1 === 0) {
-			var _p2 = _p14;
-			switch (_p2) {
-				case 1:
-					var _p3 = model.first;
-					if (_p3.ctor === '::') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{first: _p3._1, brick: _p3._0}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				case 2:
-					var _p4 = model.second;
-					if (_p4.ctor === '::') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{second: _p4._1, brick: _p4._0}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				case 3:
-					var _p5 = model.third;
-					if (_p5.ctor === '::') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{third: _p5._1, brick: _p5._0}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				default:
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			}
-		} else {
-			var _p13 = _p1;
-			var _p6 = _p14;
-			switch (_p6) {
-				case 1:
-					var _p7 = model.first;
-					if (_p7.ctor === '::') {
-						var _p8 = _elm_lang$core$Native_Utils.cmp(_p13, _p7._0) < 0;
-						if (_p8 === true) {
-							return {
-								ctor: '_Tuple2',
-								_0: _elm_lang$core$Native_Utils.update(
-									model,
-									{
-										first: {ctor: '::', _0: _p13, _1: model.first},
-										brick: 0
-									}),
-								_1: _elm_lang$core$Platform_Cmd$none
-							};
-						} else {
-							return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-						}
-					} else {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									first: {
-										ctor: '::',
-										_0: _p13,
-										_1: {ctor: '[]'}
-									},
-									brick: 0
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					}
-				case 2:
-					var _p9 = model.second;
-					if (_p9.ctor === '::') {
-						var _p10 = _elm_lang$core$Native_Utils.cmp(_p13, _p9._0) < 0;
-						if (_p10 === true) {
-							return {
-								ctor: '_Tuple2',
-								_0: _elm_lang$core$Native_Utils.update(
-									model,
-									{
-										second: {ctor: '::', _0: _p13, _1: model.second},
-										brick: 0
-									}),
-								_1: _elm_lang$core$Platform_Cmd$none
-							};
-						} else {
-							return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-						}
-					} else {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									second: {
-										ctor: '::',
-										_0: _p13,
-										_1: {ctor: '[]'}
-									},
-									brick: 0
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					}
-				case 3:
-					var _p11 = model.third;
-					if (_p11.ctor === '::') {
-						var _p12 = _elm_lang$core$Native_Utils.cmp(_p13, _p11._0) < 0;
-						if (_p12 === true) {
-							return {
-								ctor: '_Tuple2',
-								_0: _elm_lang$core$Native_Utils.update(
-									model,
-									{
-										third: {ctor: '::', _0: _p13, _1: model.third},
-										brick: 0
-									}),
-								_1: _elm_lang$core$Platform_Cmd$none
-							};
-						} else {
-							return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-						}
-					} else {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									third: {
-										ctor: '::',
-										_0: _p13,
-										_1: {ctor: '[]'}
-									},
-									brick: 0
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					}
-				default:
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			}
-		}
-	});
 var _user$project$Main$brickStyle = function (w) {
 	return _elm_lang$html$Html_Attributes$style(
 		{
@@ -183,7 +22,11 @@ var _user$project$Main$brickStyle = function (w) {
 								_elm_lang$core$Basics$toString(w * 20),
 								'px')
 						},
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '4px'},
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			}
@@ -258,33 +101,157 @@ var _user$project$Main$pilefy = function (pile) {
 };
 var _user$project$Main$Model = F4(
 	function (a, b, c, d) {
-		return {first: a, second: b, third: c, brick: d};
+		return {piles: a, brick: b, count: c, numberOfBricks: d};
 	});
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: A4(
-		_user$project$Main$Model,
+var _user$project$Main$initialModel = A4(
+	_user$project$Main$Model,
+	_elm_lang$core$Array$fromList(
 		{
 			ctor: '::',
-			_0: 1,
-			_1: {
+			_0: {
 				ctor: '::',
-				_0: 2,
+				_0: 1,
 				_1: {
 					ctor: '::',
-					_0: 3,
+					_0: 2,
 					_1: {
 						ctor: '::',
-						_0: 4,
+						_0: 3,
 						_1: {ctor: '[]'}
 					}
 				}
+			},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '[]'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '[]'},
+					_1: {ctor: '[]'}
+				}
 			}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'},
-		0),
-	_1: _elm_lang$core$Platform_Cmd$none
+		}),
+	0,
+	0,
+	3);
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'Click') {
+			var _p9 = _p0._0;
+			var _p1 = model.brick;
+			if (_p1 === 0) {
+				var _p2 = A2(_elm_lang$core$Array$get, _p9, model.piles);
+				if (_p2.ctor === 'Just') {
+					var _p3 = _p2._0;
+					if (_p3.ctor === '::') {
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									piles: A3(_elm_lang$core$Array$set, _p9, _p3._1, model.piles),
+									brick: _p3._0,
+									count: model.count + 1
+								}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					}
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			} else {
+				var _p8 = _p1;
+				var _p4 = A2(_elm_lang$core$Array$get, _p9, model.piles);
+				if (_p4.ctor === 'Just') {
+					var _p5 = _p4._0;
+					if (_p5.ctor === '::') {
+						var _p7 = _p5._0;
+						var _p6 = _elm_lang$core$Native_Utils.cmp(_p8, _p7) < 0;
+						if (_p6 === true) {
+							return {
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Native_Utils.update(
+									model,
+									{
+										piles: A3(
+											_elm_lang$core$Array$set,
+											_p9,
+											{
+												ctor: '::',
+												_0: _p8,
+												_1: {ctor: '::', _0: _p7, _1: _p5._1}
+											},
+											model.piles),
+										brick: 0
+									}),
+								_1: _elm_lang$core$Platform_Cmd$none
+							};
+						} else {
+							return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+						}
+					} else {
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									piles: A3(
+										_elm_lang$core$Array$set,
+										_p9,
+										{
+											ctor: '::',
+											_0: _p8,
+											_1: {ctor: '[]'}
+										},
+										model.piles),
+									brick: 0
+								}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					}
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			}
+		} else {
+			var _p11 = _p0._0;
+			return {
+				ctor: '_Tuple2',
+				_0: A4(
+					_user$project$Main$Model,
+					_elm_lang$core$Array$fromList(
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$core$List$indexedMap,
+								F2(
+									function (i, _p10) {
+										return i + 1;
+									}),
+								A2(_elm_lang$core$List$repeat, _p11, 0)),
+							_1: {
+								ctor: '::',
+								_0: {ctor: '[]'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '[]'},
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					0,
+					0,
+					_p11),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});
+var _user$project$Main$Difficulty = function (a) {
+	return {ctor: 'Difficulty', _0: a};
 };
 var _user$project$Main$Click = function (a) {
 	return {ctor: 'Click', _0: a};
@@ -297,73 +264,98 @@ var _user$project$Main$view = function (model) {
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
+				{ctor: '[]'},
+				A2(
+					_elm_lang$core$List$map,
+					function (n) {
+						return A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(
+									_user$project$Main$Difficulty(n)),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									_elm_lang$core$Basics$toString(n)),
+								_1: {ctor: '[]'}
+							});
+					},
+					{
+						ctor: '::',
+						_0: 3,
+						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'width', _1: '300px'},
+							_0: 4,
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'justify-content', _1: 'center'},
-									_1: {ctor: '[]'}
-								}
+								_0: 5,
+								_1: {ctor: '[]'}
 							}
-						}),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _user$project$Main$brickStyle(model.brick),
-							_1: {ctor: '[]'}
-						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}),
+						}
+					})),
 			_1: {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _user$project$Main$pilesStyle,
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'width', _1: '300px'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'justify-content', _1: 'center'},
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$span,
+							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(
-									_user$project$Main$Click(1)),
+								_0: _user$project$Main$brickStyle(model.brick),
 								_1: {ctor: '[]'}
 							},
-							{
-								ctor: '::',
-								_0: _user$project$Main$pilefy(model.first),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _user$project$Main$pilesStyle,
+							_1: {ctor: '[]'}
+						},
+						{
 							ctor: '::',
 							_0: A2(
 								_elm_lang$html$Html$span,
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html_Events$onClick(
-										_user$project$Main$Click(2)),
+										_user$project$Main$Click(0)),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _user$project$Main$pilefy(model.second),
+									_0: _user$project$Main$pilefy(
+										A2(
+											_elm_lang$core$Maybe$withDefault,
+											{ctor: '[]'},
+											A2(_elm_lang$core$Array$get, 0, model.piles))),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
@@ -373,19 +365,62 @@ var _user$project$Main$view = function (model) {
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html_Events$onClick(
-											_user$project$Main$Click(3)),
+											_user$project$Main$Click(1)),
 										_1: {ctor: '[]'}
 									},
 									{
 										ctor: '::',
-										_0: _user$project$Main$pilefy(model.third),
+										_0: _user$project$Main$pilefy(
+											A2(
+												_elm_lang$core$Maybe$withDefault,
+												{ctor: '[]'},
+												A2(_elm_lang$core$Array$get, 1, model.piles))),
 										_1: {ctor: '[]'}
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$span,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onClick(
+												_user$project$Main$Click(2)),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _user$project$Main$pilefy(
+												A2(
+													_elm_lang$core$Maybe$withDefault,
+													{ctor: '[]'},
+													A2(_elm_lang$core$Array$get, 2, model.piles))),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
 							}
-						}
-					}),
-				_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(model.count),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'/',
+											_elm_lang$core$Basics$toString(
+												Math.pow(2, model.numberOfBricks) - 1)))),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
 			}
 		});
 };
